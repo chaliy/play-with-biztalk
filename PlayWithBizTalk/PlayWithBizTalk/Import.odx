@@ -2,7 +2,7 @@
 #error Do not define __DESIGNER_DATA.
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <om:MetaModel MajorVersion="1" MinorVersion="3" Core="2b131234-7959-458d-834f-2dc0769ce683" ScheduleModel="66366196-361d-448d-976f-cab5e87496d2" xmlns:om="http://schemas.microsoft.com/BizTalk/2003/DesignerData">
-    <om:Element Type="Module" OID="446fed05-bd6a-41e6-9f4f-9ae8fd47816a" LowerBound="1.1" HigherBound="47.1">
+    <om:Element Type="Module" OID="446fed05-bd6a-41e6-9f4f-9ae8fd47816a" LowerBound="1.1" HigherBound="58.1">
         <om:Property Name="ReportToAnalyst" Value="True" />
         <om:Property Name="Name" Value="PlayWithBizTalk" />
         <om:Property Name="Signal" Value="False" />
@@ -44,19 +44,38 @@
                 </om:Element>
             </om:Element>
         </om:Element>
-        <om:Element Type="CorrelationType" OID="210d8364-8850-4bfe-8e1d-9c8016558210" ParentLink="Module_CorrelationType" LowerBound="18.1" HigherBound="22.1">
+        <om:Element Type="PortType" OID="d1f6258c-fc39-4c88-978a-36b9fa23b969" ParentLink="Module_PortType" LowerBound="18.1" HigherBound="25.1">
+            <om:Property Name="Synchronous" Value="False" />
+            <om:Property Name="TypeModifier" Value="Internal" />
+            <om:Property Name="ReportToAnalyst" Value="True" />
+            <om:Property Name="Name" Value="ArchivePortType" />
+            <om:Property Name="Signal" Value="True" />
+            <om:Element Type="OperationDeclaration" OID="6694ac0c-e379-4812-b963-e746958df64a" ParentLink="PortType_OperationDeclaration" LowerBound="20.1" HigherBound="24.1">
+                <om:Property Name="OperationType" Value="OneWay" />
+                <om:Property Name="ReportToAnalyst" Value="True" />
+                <om:Property Name="Name" Value="ArchiveOperation" />
+                <om:Property Name="Signal" Value="True" />
+                <om:Element Type="MessageRef" OID="0b5c9a70-af19-47da-8ed7-22a9503ad2f7" ParentLink="OperationDeclaration_RequestMessageRef" LowerBound="22.13" HigherBound="22.19">
+                    <om:Property Name="Ref" Value="PlayWithBizTalk.Recall" />
+                    <om:Property Name="ReportToAnalyst" Value="True" />
+                    <om:Property Name="Name" Value="Request" />
+                    <om:Property Name="Signal" Value="True" />
+                </om:Element>
+            </om:Element>
+        </om:Element>
+        <om:Element Type="CorrelationType" OID="210d8364-8850-4bfe-8e1d-9c8016558210" ParentLink="Module_CorrelationType" LowerBound="25.1" HigherBound="29.1">
             <om:Property Name="TypeModifier" Value="Internal" />
             <om:Property Name="ReportToAnalyst" Value="True" />
             <om:Property Name="Name" Value="DefaultCorrelationType" />
             <om:Property Name="Signal" Value="True" />
-            <om:Element Type="PropertyRef" OID="1e898555-a196-4a13-a2e2-7d1a980a3b97" ParentLink="CorrelationType_PropertyRef" LowerBound="20.9" HigherBound="20.41">
+            <om:Element Type="PropertyRef" OID="1e898555-a196-4a13-a2e2-7d1a980a3b97" ParentLink="CorrelationType_PropertyRef" LowerBound="27.9" HigherBound="27.41">
                 <om:Property Name="Ref" Value="MessageTracking.ActivityIdentity" />
                 <om:Property Name="ReportToAnalyst" Value="True" />
                 <om:Property Name="Name" Value="PropertyRef_1" />
                 <om:Property Name="Signal" Value="False" />
             </om:Element>
         </om:Element>
-        <om:Element Type="ServiceDeclaration" OID="6856d123-6bdb-4e39-b80b-4808090c35a2" ParentLink="Module_ServiceDeclaration" LowerBound="22.1" HigherBound="46.1">
+        <om:Element Type="ServiceDeclaration" OID="6856d123-6bdb-4e39-b80b-4808090c35a2" ParentLink="Module_ServiceDeclaration" LowerBound="29.1" HigherBound="57.1">
             <om:Property Name="InitializedTransactionType" Value="False" />
             <om:Property Name="IsInvokable" Value="False" />
             <om:Property Name="TypeModifier" Value="Internal" />
@@ -65,7 +84,7 @@
             <om:Property Name="Signal" Value="True" />
             <om:Element Type="ServiceBody" OID="ccf638cc-83a3-4770-a564-98a32e35acac" ParentLink="ServiceDeclaration_ServiceBody">
                 <om:Property Name="Signal" Value="False" />
-                <om:Element Type="Receive" OID="275f6ea9-8b85-4ed5-8da6-eaed2a43aa12" ParentLink="ServiceBody_Statement" LowerBound="34.1" HigherBound="36.1">
+                <om:Element Type="Receive" OID="275f6ea9-8b85-4ed5-8da6-eaed2a43aa12" ParentLink="ServiceBody_Statement" LowerBound="43.1" HigherBound="45.1">
                     <om:Property Name="Activate" Value="True" />
                     <om:Property Name="PortName" Value="InputPort" />
                     <om:Property Name="MessageName" Value="InputMessage" />
@@ -75,35 +94,44 @@
                     <om:Property Name="Name" Value="Receive_Import" />
                     <om:Property Name="Signal" Value="True" />
                 </om:Element>
-                <om:Element Type="Construct" OID="a1099b8d-f7ac-423e-b1ab-967442ba8bd7" ParentLink="ServiceBody_Statement" LowerBound="36.1" HigherBound="42.1">
+                <om:Element Type="Send" OID="49103aa2-141f-43b9-ace5-d2887e20cd95" ParentLink="ServiceBody_Statement" LowerBound="45.1" HigherBound="47.1">
+                    <om:Property Name="PortName" Value="ArchivePort" />
+                    <om:Property Name="MessageName" Value="InputMessage" />
+                    <om:Property Name="OperationName" Value="ArchiveOperation" />
+                    <om:Property Name="OperationMessageName" Value="Request" />
+                    <om:Property Name="ReportToAnalyst" Value="True" />
+                    <om:Property Name="Name" Value="Send_Archive" />
+                    <om:Property Name="Signal" Value="True" />
+                </om:Element>
+                <om:Element Type="Construct" OID="a1099b8d-f7ac-423e-b1ab-967442ba8bd7" ParentLink="ServiceBody_Statement" LowerBound="47.1" HigherBound="53.1">
                     <om:Property Name="ReportToAnalyst" Value="True" />
                     <om:Property Name="Name" Value="ConstrucOutputMessage" />
                     <om:Property Name="Signal" Value="True" />
-                    <om:Element Type="Transform" OID="d409be79-0de1-4000-95d2-dde48f9abcce" ParentLink="ComplexStatement_Statement" LowerBound="39.1" HigherBound="41.1">
+                    <om:Element Type="Transform" OID="d409be79-0de1-4000-95d2-dde48f9abcce" ParentLink="ComplexStatement_Statement" LowerBound="50.1" HigherBound="52.1">
                         <om:Property Name="ClassName" Value="PlayWithBizTalk.DecomposeMap" />
                         <om:Property Name="ReportToAnalyst" Value="True" />
                         <om:Property Name="Name" Value="DecomposeTransform" />
                         <om:Property Name="Signal" Value="True" />
-                        <om:Element Type="MessagePartRef" OID="339bfe9d-6e5d-47e2-8345-b78cd5efa75a" ParentLink="Transform_InputMessagePartRef" LowerBound="40.75" HigherBound="40.87">
+                        <om:Element Type="MessagePartRef" OID="339bfe9d-6e5d-47e2-8345-b78cd5efa75a" ParentLink="Transform_InputMessagePartRef" LowerBound="51.75" HigherBound="51.87">
                             <om:Property Name="MessageRef" Value="InputMessage" />
                             <om:Property Name="ReportToAnalyst" Value="True" />
                             <om:Property Name="Name" Value="MessagePartReference_1" />
                             <om:Property Name="Signal" Value="False" />
                         </om:Element>
-                        <om:Element Type="MessagePartRef" OID="3a9fed63-8078-43d4-8cb4-072fbb17fe04" ParentLink="Transform_OutputMessagePartRef" LowerBound="40.28" HigherBound="40.41">
+                        <om:Element Type="MessagePartRef" OID="3a9fed63-8078-43d4-8cb4-072fbb17fe04" ParentLink="Transform_OutputMessagePartRef" LowerBound="51.28" HigherBound="51.41">
                             <om:Property Name="MessageRef" Value="OutputMessage" />
                             <om:Property Name="ReportToAnalyst" Value="True" />
                             <om:Property Name="Name" Value="MessagePartReference_2" />
                             <om:Property Name="Signal" Value="False" />
                         </om:Element>
                     </om:Element>
-                    <om:Element Type="MessageRef" OID="a5c9175d-3841-4114-abe5-821abadbfa13" ParentLink="Construct_MessageRef" LowerBound="37.23" HigherBound="37.36">
+                    <om:Element Type="MessageRef" OID="a5c9175d-3841-4114-abe5-821abadbfa13" ParentLink="Construct_MessageRef" LowerBound="48.23" HigherBound="48.36">
                         <om:Property Name="Ref" Value="OutputMessage" />
                         <om:Property Name="ReportToAnalyst" Value="True" />
                         <om:Property Name="Signal" Value="False" />
                     </om:Element>
                 </om:Element>
-                <om:Element Type="Send" OID="b77ba7f5-0d84-4fe8-808e-93ffde4f6d02" ParentLink="ServiceBody_Statement" LowerBound="42.1" HigherBound="44.1">
+                <om:Element Type="Send" OID="b77ba7f5-0d84-4fe8-808e-93ffde4f6d02" ParentLink="ServiceBody_Statement" LowerBound="53.1" HigherBound="55.1">
                     <om:Property Name="PortName" Value="OutputPort" />
                     <om:Property Name="MessageName" Value="OutputMessage" />
                     <om:Property Name="OperationName" Value="Export" />
@@ -113,7 +141,7 @@
                     <om:Property Name="Signal" Value="True" />
                 </om:Element>
             </om:Element>
-            <om:Element Type="PortDeclaration" OID="1e4a7173-f174-4688-9fd8-b2c4f433734a" ParentLink="ServiceDeclaration_PortDeclaration" LowerBound="25.1" HigherBound="27.1">
+            <om:Element Type="PortDeclaration" OID="1e4a7173-f174-4688-9fd8-b2c4f433734a" ParentLink="ServiceDeclaration_PortDeclaration" LowerBound="32.1" HigherBound="34.1">
                 <om:Property Name="PortModifier" Value="Implements" />
                 <om:Property Name="Orientation" Value="Left" />
                 <om:Property Name="PortIndex" Value="-1" />
@@ -125,7 +153,7 @@
                 <om:Property Name="ReportToAnalyst" Value="True" />
                 <om:Property Name="Name" Value="InputPort" />
                 <om:Property Name="Signal" Value="True" />
-                <om:Element Type="PhysicalBindingAttribute" OID="1628a7ea-291b-4365-a70b-6593d41381b1" ParentLink="PortDeclaration_CLRAttribute" LowerBound="25.1" HigherBound="26.1">
+                <om:Element Type="PhysicalBindingAttribute" OID="1628a7ea-291b-4365-a70b-6593d41381b1" ParentLink="PortDeclaration_CLRAttribute" LowerBound="32.1" HigherBound="33.1">
                     <om:Property Name="InPipeline" Value="PlayWithBizTalk.ImportPipeline" />
                     <om:Property Name="OutPipeline" Value="Microsoft.BizTalk.DefaultPipelines.XMLTransmit" />
                     <om:Property Name="TransportType" Value="FILE" />
@@ -134,10 +162,31 @@
                     <om:Property Name="Signal" Value="False" />
                 </om:Element>
             </om:Element>
-            <om:Element Type="PortDeclaration" OID="e18d5b7b-8659-4bf3-b1b1-f84ce4811cc7" ParentLink="ServiceDeclaration_PortDeclaration" LowerBound="27.1" HigherBound="29.1">
+            <om:Element Type="PortDeclaration" OID="65ad2e7f-4bd1-4c93-bd9b-490c0ea364e2" ParentLink="ServiceDeclaration_PortDeclaration" LowerBound="34.1" HigherBound="36.1">
                 <om:Property Name="PortModifier" Value="Uses" />
                 <om:Property Name="Orientation" Value="Right" />
-                <om:Property Name="PortIndex" Value="0" />
+                <om:Property Name="PortIndex" Value="2" />
+                <om:Property Name="IsWebPort" Value="False" />
+                <om:Property Name="OrderedDelivery" Value="False" />
+                <om:Property Name="DeliveryNotification" Value="None" />
+                <om:Property Name="Type" Value="PlayWithBizTalk.ArchivePortType" />
+                <om:Property Name="ParamDirection" Value="In" />
+                <om:Property Name="ReportToAnalyst" Value="True" />
+                <om:Property Name="Name" Value="ArchivePort" />
+                <om:Property Name="Signal" Value="False" />
+                <om:Element Type="PhysicalBindingAttribute" OID="c5e487da-98f1-4a3d-80e5-2a8e98944cbd" ParentLink="PortDeclaration_CLRAttribute" LowerBound="34.1" HigherBound="35.1">
+                    <om:Property Name="InPipeline" Value="Microsoft.BizTalk.DefaultPipelines.XMLReceive" />
+                    <om:Property Name="OutPipeline" Value="Microsoft.BizTalk.DefaultPipelines.XMLTransmit" />
+                    <om:Property Name="TransportType" Value="FILE" />
+                    <om:Property Name="URI" Value="C:\Users\dev\Desktop\ARCHIVE\%MessageID%.xml" />
+                    <om:Property Name="IsDynamic" Value="False" />
+                    <om:Property Name="Signal" Value="False" />
+                </om:Element>
+            </om:Element>
+            <om:Element Type="PortDeclaration" OID="e18d5b7b-8659-4bf3-b1b1-f84ce4811cc7" ParentLink="ServiceDeclaration_PortDeclaration" LowerBound="36.1" HigherBound="38.1">
+                <om:Property Name="PortModifier" Value="Uses" />
+                <om:Property Name="Orientation" Value="Right" />
+                <om:Property Name="PortIndex" Value="4" />
                 <om:Property Name="IsWebPort" Value="False" />
                 <om:Property Name="OrderedDelivery" Value="False" />
                 <om:Property Name="DeliveryNotification" Value="None" />
@@ -146,7 +195,7 @@
                 <om:Property Name="ReportToAnalyst" Value="True" />
                 <om:Property Name="Name" Value="OutputPort" />
                 <om:Property Name="Signal" Value="True" />
-                <om:Element Type="PhysicalBindingAttribute" OID="1ad6f579-b3b3-4047-9040-e61bdb0e43dc" ParentLink="PortDeclaration_CLRAttribute" LowerBound="27.1" HigherBound="28.1">
+                <om:Element Type="PhysicalBindingAttribute" OID="1ad6f579-b3b3-4047-9040-e61bdb0e43dc" ParentLink="PortDeclaration_CLRAttribute" LowerBound="36.1" HigherBound="37.1">
                     <om:Property Name="InPipeline" Value="Microsoft.BizTalk.DefaultPipelines.XMLReceive" />
                     <om:Property Name="OutPipeline" Value="Microsoft.BizTalk.DefaultPipelines.XMLTransmit" />
                     <om:Property Name="TransportType" Value="FILE" />
@@ -155,13 +204,13 @@
                     <om:Property Name="Signal" Value="False" />
                 </om:Element>
             </om:Element>
-            <om:Element Type="CorrelationDeclaration" OID="0e2bb5f3-685f-420b-af26-8d006873f0b1" ParentLink="ServiceDeclaration_CorrelationDeclaration" LowerBound="29.1" HigherBound="30.1">
+            <om:Element Type="CorrelationDeclaration" OID="0e2bb5f3-685f-420b-af26-8d006873f0b1" ParentLink="ServiceDeclaration_CorrelationDeclaration" LowerBound="38.1" HigherBound="39.1">
                 <om:Property Name="Type" Value="PlayWithBizTalk.DefaultCorrelationType" />
                 <om:Property Name="ParamDirection" Value="In" />
                 <om:Property Name="ReportToAnalyst" Value="True" />
                 <om:Property Name="Name" Value="DefaultCorrelation" />
                 <om:Property Name="Signal" Value="True" />
-                <om:Element Type="StatementRef" OID="b238bf91-98b8-4949-8e6d-2cabd5e62ff6" ParentLink="CorrelationDeclaration_StatementRef" LowerBound="35.63" HigherBound="35.92">
+                <om:Element Type="StatementRef" OID="b238bf91-98b8-4949-8e6d-2cabd5e62ff6" ParentLink="CorrelationDeclaration_StatementRef" LowerBound="44.63" HigherBound="44.92">
                     <om:Property Name="Initializes" Value="True" />
                     <om:Property Name="Ref" Value="275f6ea9-8b85-4ed5-8da6-eaed2a43aa12" />
                     <om:Property Name="ReportToAnalyst" Value="True" />
@@ -169,14 +218,14 @@
                     <om:Property Name="Signal" Value="False" />
                 </om:Element>
             </om:Element>
-            <om:Element Type="MessageDeclaration" OID="d45ff1be-817c-4c44-ba8b-f92ea7cfcf0d" ParentLink="ServiceDeclaration_MessageDeclaration" LowerBound="30.1" HigherBound="31.1">
+            <om:Element Type="MessageDeclaration" OID="d45ff1be-817c-4c44-ba8b-f92ea7cfcf0d" ParentLink="ServiceDeclaration_MessageDeclaration" LowerBound="39.1" HigherBound="40.1">
                 <om:Property Name="Type" Value="PlayWithBizTalk.Recall" />
                 <om:Property Name="ParamDirection" Value="In" />
                 <om:Property Name="ReportToAnalyst" Value="True" />
                 <om:Property Name="Name" Value="InputMessage" />
                 <om:Property Name="Signal" Value="True" />
             </om:Element>
-            <om:Element Type="MessageDeclaration" OID="f2d9727d-9f52-438d-a138-2d96b10e0849" ParentLink="ServiceDeclaration_MessageDeclaration" LowerBound="31.1" HigherBound="32.1">
+            <om:Element Type="MessageDeclaration" OID="f2d9727d-9f52-438d-a138-2d96b10e0849" ParentLink="ServiceDeclaration_MessageDeclaration" LowerBound="40.1" HigherBound="41.1">
                 <om:Property Name="Type" Value="PlayWithBizTalk.Recall" />
                 <om:Property Name="ParamDirection" Value="In" />
                 <om:Property Name="ReportToAnalyst" Value="True" />
@@ -204,6 +253,13 @@ module PlayWithBizTalk
             Recall
         };
     };
+    internal porttype ArchivePortType
+    {
+        oneway ArchiveOperation
+        {
+            Recall
+        };
+    };
     internal correlationtype DefaultCorrelationType
     {
         MessageTracking.ActivityIdentity
@@ -213,6 +269,8 @@ module PlayWithBizTalk
     {
         [Microsoft.XLANGs.BaseTypes.PhysicalBinding("FILE", "C:\\Users\\dev\\Desktop\\IMPORT\\*.xml", typeof(PlayWithBizTalk.ImportPipeline))]
         port implements InputPortType InputPort;
+        [Microsoft.XLANGs.BaseTypes.PhysicalBinding("FILE", "C:\\Users\\dev\\Desktop\\ARCHIVE\\%MessageID%.xml", typeof(Microsoft.BizTalk.DefaultPipelines.XMLTransmit))]
+        port uses ArchivePortType ArchivePort;
         [Microsoft.XLANGs.BaseTypes.PhysicalBinding("FILE", "C:\\Users\\dev\\Desktop\\EXPORT\\%MessageID%.xml", typeof(Microsoft.BizTalk.DefaultPipelines.XMLTransmit))]
         port uses OutputPortType OutputPort;
         correlation DefaultCorrelationType DefaultCorrelation;
@@ -222,6 +280,8 @@ module PlayWithBizTalk
         {
             [Microsoft.XLANGs.BaseTypes.DesignerPosition("275f6ea9-8b85-4ed5-8da6-eaed2a43aa12")]
             activate receive (InputPort.Import, InputMessage, initialize DefaultCorrelation);
+            [Microsoft.XLANGs.BaseTypes.DesignerPosition("49103aa2-141f-43b9-ace5-d2887e20cd95")]
+            send (ArchivePort.ArchiveOperation, InputMessage);
             [Microsoft.XLANGs.BaseTypes.DesignerPosition("a1099b8d-f7ac-423e-b1ab-967442ba8bd7")]
             construct OutputMessage
             {

@@ -30,17 +30,28 @@ namespace PlayWithBizTalk
 "=\"AllowUnrecognizedMessage\">              <Value xsi:type=\"xsd:boolean\">false</Value>            </P"+
 "roperty>            <Property Name=\"ValidateDocument\">              <Value xsi:type=\"xsd:boolean\">fa"+
 "lse</Value>            </Property>            <Property Name=\"RecoverableInterchangeProcessing\">    "+
-"          <Value xsi:type=\"xsd:boolean\">false</Value>            </Property>            <Property Na"+
-"me=\"HiddenProperties\">              <Value xsi:type=\"xsd:string\">EnvelopeSpecTargetNamespaces,Docume"+
-"ntSpecTargetNamespaces</Value>            </Property>          </Properties>          <CachedDisplay"+
-"Name>XML disassembler</CachedDisplayName>          <CachedIsManaged>true</CachedIsManaged>        </"+
-"Component>      </Components>    </Stage>    <Stage>      <PolicyFileStage _locAttrData=\"Name\" _locI"+
-"D=\"3\" Name=\"Validate\" minOccurs=\"0\" maxOccurs=\"-1\" execMethod=\"All\" stageId=\"9d0e410d-4cce-4536-83fa"+
-"-4a5040674ad6\" />      <Components />    </Stage>    <Stage>      <PolicyFileStage _locAttrData=\"Nam"+
-"e\" _locID=\"4\" Name=\"ResolveParty\" minOccurs=\"0\" maxOccurs=\"-1\" execMethod=\"All\" stageId=\"9d0e410e-4c"+
-"ce-4536-83fa-4a5040674ad6\" />      <Components />    </Stage>  </Stages></Document>";
+"          <Value xsi:type=\"xsd:boolean\">true</Value>            </Property>            <Property Nam"+
+"e=\"HiddenProperties\">              <Value xsi:type=\"xsd:string\">EnvelopeSpecTargetNamespaces,Documen"+
+"tSpecTargetNamespaces</Value>            </Property>          </Properties>          <CachedDisplayN"+
+"ame>XML disassembler</CachedDisplayName>          <CachedIsManaged>true</CachedIsManaged>        </C"+
+"omponent>      </Components>    </Stage>    <Stage>      <PolicyFileStage _locAttrData=\"Name\" _locID"+
+"=\"3\" Name=\"Validate\" minOccurs=\"0\" maxOccurs=\"-1\" execMethod=\"All\" stageId=\"9d0e410d-4cce-4536-83fa-"+
+"4a5040674ad6\" />      <Components>        <Component>          <Name>Microsoft.BizTalk.Component.Xml"+
+"Validator,Microsoft.BizTalk.Pipeline.Components, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31"+
+"bf3856ad364e35</Name>          <ComponentName>XML validator</ComponentName>          <Description>XM"+
+"L validator component.</Description>          <Version>1.0</Version>          <Properties>          "+
+"  <Property Name=\"DocumentSpecName\">              <Value xsi:type=\"xsd:string\">PlayWithBizTalk.Recal"+
+"l</Value>            </Property>            <Property Name=\"DocumentSpecTargetNamespaces\">          "+
+"    <Value xsi:type=\"xsd:string\">http://dev.local/recall</Value>            </Property>            <"+
+"Property Name=\"HiddenProperties\">              <Value xsi:type=\"xsd:string\">DocumentSpecTargetNamesp"+
+"aces</Value>            </Property>            <Property Name=\"RecoverableInterchangeProcessing\">   "+
+"           <Value xsi:type=\"xsd:boolean\">false</Value>            </Property>          </Properties>"+
+"          <CachedDisplayName>XML validator</CachedDisplayName>          <CachedIsManaged>true</Cache"+
+"dIsManaged>        </Component>      </Components>    </Stage>    <Stage>      <PolicyFileStage _loc"+
+"AttrData=\"Name\" _locID=\"4\" Name=\"ResolveParty\" minOccurs=\"0\" maxOccurs=\"-1\" execMethod=\"All\" stageId"+
+"=\"9d0e410e-4cce-4536-83fa-4a5040674ad6\" />      <Components />    </Stage>  </Stages></Document>";
         
-        private const string _versionDependentGuid = "f2446166-3dec-4fce-9753-587ef3040621";
+        private const string _versionDependentGuid = "f6686d76-c7c4-4c87-bb0c-3e5eb05def7d";
         
         public ImportPipeline()
         {
@@ -57,13 +68,28 @@ namespace PlayWithBizTalk
 "ype=\"xsd:string\">http://dev.local/recall</Value>    </Property>    <Property Name=\"AllowUnrecognized"+
 "Message\">      <Value xsi:type=\"xsd:boolean\">false</Value>    </Property>    <Property Name=\"Validat"+
 "eDocument\">      <Value xsi:type=\"xsd:boolean\">false</Value>    </Property>    <Property Name=\"Recov"+
-"erableInterchangeProcessing\">      <Value xsi:type=\"xsd:boolean\">false</Value>    </Property>    <Pr"+
-"operty Name=\"HiddenProperties\">      <Value xsi:type=\"xsd:string\">EnvelopeSpecTargetNamespaces,Docum"+
-"entSpecTargetNamespaces</Value>    </Property>  </Properties></PropertyBag>";
+"erableInterchangeProcessing\">      <Value xsi:type=\"xsd:boolean\">true</Value>    </Property>    <Pro"+
+"perty Name=\"HiddenProperties\">      <Value xsi:type=\"xsd:string\">EnvelopeSpecTargetNamespaces,Docume"+
+"ntSpecTargetNamespaces</Value>    </Property>  </Properties></PropertyBag>";
                 PropertyBag pb = PropertyBag.DeserializeFromXml(comp0XmlProperties);;
                 ((IPersistPropertyBag)(comp0)).Load(pb, 0);
             }
             this.AddComponent(stage, comp0);
+            stage = this.AddStage(new System.Guid("9d0e410d-4cce-4536-83fa-4a5040674ad6"), Microsoft.BizTalk.PipelineOM.ExecutionMode.all);
+            IBaseComponent comp1 = Microsoft.BizTalk.PipelineOM.PipelineManager.CreateComponent("Microsoft.BizTalk.Component.XmlValidator,Microsoft.BizTalk.Pipeline.Components, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35");;
+            if (comp1 is IPersistPropertyBag)
+            {
+                string comp1XmlProperties = "<?xml version=\"1.0\" encoding=\"utf-16\"?><PropertyBag xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-inst"+
+"ance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">  <Properties>    <Property Name=\"DocumentSpecNam"+
+"e\">      <Value xsi:type=\"xsd:string\">PlayWithBizTalk.Recall</Value>    </Property>    <Property Nam"+
+"e=\"DocumentSpecTargetNamespaces\">      <Value xsi:type=\"xsd:string\">http://dev.local/recall</Value> "+
+"   </Property>    <Property Name=\"HiddenProperties\">      <Value xsi:type=\"xsd:string\">DocumentSpecT"+
+"argetNamespaces</Value>    </Property>    <Property Name=\"RecoverableInterchangeProcessing\">      <V"+
+"alue xsi:type=\"xsd:boolean\">false</Value>    </Property>  </Properties></PropertyBag>";
+                PropertyBag pb = PropertyBag.DeserializeFromXml(comp1XmlProperties);;
+                ((IPersistPropertyBag)(comp1)).Load(pb, 0);
+            }
+            this.AddComponent(stage, comp1);
         }
         
         public override string XmlContent
