@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root xmlns="http://dev.local/input">
+  <Recall xmlns="http://dev.local/recall">
+    <SerialNumber>1</SerialNumber>
+  </Recall>
+  <Recall xmlns="http://dev.local/recall">
+    <SerialNumber>2</SerialNumber>
+  </Recall>
+</Root>
